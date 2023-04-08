@@ -37,9 +37,9 @@ public class TransectionalProducer {
                 producer.send(record2);
             }
         } catch (Exception e) {
+            producer.abortTransaction();
             throw new RuntimeException(e);
         } finally {
-            producer.abortTransaction();
             producer.close();
         }
         producer.commitTransaction();
